@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tech Bridge for the Disconnected</title>
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puente Tecnológico para los Desconectados</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Puente Tecnológico para los Desconectados - Obtén ayuda con problemas tecnológicos comunes como conectividad a internet, dispositivos lentos y más.">
+    <meta name="keywords" content="soporte técnico, problemas de internet, dispositivo lento, batería que se agota, problemas de wifi">
+    <meta name="author" content="Tu Nombre">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    
     <!-- Styles -->
     <style>
         body {
@@ -29,6 +31,7 @@
             height: auto;
             margin: 10px;
         }
+        /* Tab Style */
         .tabs {
             display: flex;
             justify-content: center;
@@ -85,33 +88,31 @@
             width: 100%;
             max-width: 400px;
         }
-        .chatbot-container {
+        .chat-container {
             width: 100%;
             height: 500px;
             margin-top: 20px;
             border: 2px solid #ddd;
             border-radius: 10px;
             overflow: hidden;
-            position: relative;
         }
-        #webchat {
-            position: absolute !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: 0 !important;
-            width: 100% !important;
-            height: 100% !important;
+        #webchat .bpWebchat {
+            position: unset;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
         }
-        #webchat > * {
-            margin: 0 !important;
-            padding: 0 !important;
+        #webchat .bpFab {
+            display: none;
         }
+        /* Mobile User Notice */
         .mobile-notice {
             font-size: 14px;
             color: #666;
             margin-bottom: 10px;
         }
+        /* Dark Mode */
         .dark-mode {
             background-color: #333;
             color: #fff;
@@ -120,20 +121,22 @@
             background-color: #444;
             color: #fff;
         }
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
             }
-            .chatbot-container {
-                height: 400px;
+            .chat-container {
+                height: 400px; /* Adjusted height for mobile */
             }
             h1 {
-                font-size: 24px;
+                font-size: 24px; /* Smaller heading for mobile */
             }
             .dropdown {
-                width: 100%;
+                width: 100%; /* Full width for dropdown on mobile */
             }
         }
+        /* Chatbot Toggle Button */
         #chatbotToggle {
             position: fixed;
             bottom: 20px;
@@ -147,70 +150,67 @@
             z-index: 1000;
         }
     </style>
-
-    <!-- Botpress Script -->
+    <!-- Botpress Scripts -->
     <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
 </head>
 <body>
     <h1>
-        <img src="logo.png" alt="Logo de Tech Bridge" class="logo">
-        Tech Bridge for the Disconnected
+        <img src="logo.png" alt="Logo de Puente Tecnológico" class="logo">
+        Puente Tecnológico para los Desconectados
     </h1>
 
-    <!-- Tabs -->
+    <!-- Tabs Navigation -->
     <div class="tabs">
         <button class="tab-button active" onclick="showTab('faq')">Preguntas Frecuentes</button>
         <button class="tab-button" onclick="showTab('about')">Sobre Nosotros</button>
         <button class="tab-button" onclick="showTab('chatbot')">Chatbot</button>
     </div>
 
-    <!-- FAQ -->
+    <!-- Tab Contents -->
     <div class="tab-content active" id="faq">
         <h2>Preguntas Frecuentes</h2>
         <div class="container">
             <details>
-                <summary>¿Cómo puedo arreglar un dispositivo lento?</summary>
-                <p>Cierra las aplicaciones no utilizadas y borra la memoria caché para acelerar tu dispositivo.</p>
+                <summary>¿Cómo solucionar un dispositivo lento?</summary>
+                <p>Cierra aplicaciones no utilizadas y limpia la caché para acelerar el dispositivo.</p>
             </details>
             <details>
                 <summary>¿Por qué mi WiFi se desconecta constantemente?</summary>
-                <p>Olvida y vuelve a conectar la red, o reinicia tu router.</p>
+                <p>Olvida la red y vuelve a conectarte, o reinicia el router.</p>
             </details>
             <details>
                 <summary>¿Qué hacer si la batería se agota rápidamente?</summary>
                 <p>Reduce el brillo de la pantalla, cierra aplicaciones en segundo plano y desactiva los servicios de ubicación.</p>
             </details>
             <details>
-                <summary>¿Cómo puedo arreglar un software que no responde?</summary>
-                <p>Intenta actualizar o reinstalar la app y reiniciar el dispositivo.</p>
+                <summary>¿Cómo solucionar software que no responde?</summary>
+                <p>Intenta actualizar o reinstalar el software y reinicia el dispositivo.</p>
             </details>
             <details>
-                <summary>¿Qué hacer si no tengo conexión a internet?</summary>
-                <p>Reinicia el router o contacta a tu proveedor de servicios de internet.</p>
+                <summary>¿Qué hacer si no hay conexión a internet?</summary>
+                <p>Intenta reiniciar el router o contacta a tu proveedor de servicios de internet.</p>
             </details>
         </div>
     </div>
 
-    <!-- About -->
     <div class="tab-content" id="about">
         <h2>Sobre Nosotros</h2>
         <div class="container">
-            <p>Somos un grupo de estudiantes de Herricks High School con el objetivo de servir a nuestra comunidad. Nuestro medio de servicio es este sitio web, diseñado para ayudar a quienes luchan por mantenerse al día con el mundo tecnológico en constante cambio. Sabemos lo difícil que es mantenerse actualizado, especialmente para los adultos mayores y las personas con discapacidad visual. Nuestra historia comenzó cuando uno de los miembros de nuestro grupo visitó a un familiar en el hospital. Durante la conversación, ella expresó que su mayor problema era no poder contactar a sus familiares. Eso nos inspiró a desarrollar una herramienta que pudiera ayudar a cualquiera con sus necesidades tecnológicas. Nos esforzamos por ayudar y servir para mejorar nuestra comunidad y el mundo entero.</p>
+            <p>Somos un grupo de estudiantes de la escuela secundaria Herricks y nuestro objetivo es servir a nuestra comunidad. Nuestro medio de servicio es este sitio web, diseñado para ayudar a quienes luchan por mantenerse al día con el mundo tecnológico en constante evolución. Entendemos lo difícil que es mantenerse actualizado, especialmente para personas mayores y con discapacidades visuales. Nuestra historia comenzó cuando un miembro de nuestro grupo visitó a un familiar en el hospital. Durante su conversación, ella expresó su mayor problema: no poder contactar a sus familiares. Esto nos inspiró como grupo para desarrollar una herramienta que pueda ayudar a cualquiera con sus necesidades tecnológicas. Nos esforzamos por ayudar y brindar servicios para mejorar nuestra comunidad y el mundo entero.</p>
         </div>
     </div>
 
-    <!-- Chatbot -->
     <div class="tab-content" id="chatbot">
         <h2>Chatbot</h2>
         <div class="container">
-            <p class="mobile-notice">Usuarios móviles: por favor cierra el chatbot para poder desplazarte hacia arriba y abajo.</p>
-            <div class="chatbot-container" id="webchat-container">
-                <!-- Botpress will inject here -->
+            <p class="mobile-notice">Usuarios móviles: ¡Sal del chatbot para poder desplazarte hacia arriba y abajo!</p>
+            <div class="chat-container">
+                <div id="webchat" style="width: 100%; height: 100%;"></div>
             </div>
         </div>
     </div>
 
-    <!-- Chatbot Toggle -->
+    <!-- Chatbot Toggle Button -->
     <button id="chatbotToggle">Abrir Chatbot</button>
 
     <!-- Scripts -->
@@ -218,52 +218,48 @@
         function showTab(tabName) {
             const tabs = document.querySelectorAll('.tab-content');
             const buttons = document.querySelectorAll('.tab-button');
-
-            tabs.forEach(tab => tab.classList.remove('active'));
-            buttons.forEach(button => button.classList.remove('active'));
-
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
 
-        // Open chatbot on click
+        // Chatbot Toggle Button
         const chatbotToggle = document.getElementById("chatbotToggle");
         chatbotToggle.addEventListener("click", () => {
-            window.botpressWebChat.open();
+            window.botpress.open(); // Open the chatbot
         });
 
-        // Initialize Botpress with updated configuration
-        window.botpressWebChat.init({
-            "botId": "d86f2e7d-be1d-40f5-a8bd-4c75c96ae22c",
-            "hostUrl": "https://cdn.botpress.cloud/webchat/v2",
-            "messagingUrl": "https://messaging.botpress.cloud",
-            "clientId": "36fc36e6-f791-4b02-8086-58654242f322",
-            "selector": "#webchat-container",
-            "config": {
-                "composerPlaceholder": "¿En qué puedo ayudarte? (¿Qué dispositivo estás usando?)",
-                "botName": "Grandchild",
-                "botDescription": "¡Estoy aquí en lugar de tu nieto!",
-                "email": {
-                    "title": "TechBridgeForTheDisconnected@gmail.com",
-                    "link": "TechBridgeForTheDisconnected@gmail.com"
-                },
+        // Initialize Botpress
+        window.botpress.init({
+          "botId": "d86f2e7d-be1d-40f5-a8bd-4c75c96ae22c",
+          "configuration": {
+            "composerPlaceholder": "¿En qué puedo ayudarte? (¿Qué dispositivo estás usando?)",
+            "botName": "Nieto",
+            "botDescription": "¡Estoy aquí para sustituir a tu nieto!",
+            "website": {},
+            "email": {
+              "title": "TechBridgeForTheDisconnected@gmail.com",
+              "link": "TechBridgeForTheDisconnected@gmail.com"
+            },
+                "phone": {},
+                "termsOfService": {},
+                "privacyPolicy": {},
                 "color": "#3B82F6",
                 "variant": "solid",
                 "themeMode": "light",
                 "fontFamily": "inter",
                 "radius": 1
-            }
-        });
-
-        // Force resize after initialization
-        setTimeout(() => {
-            const webchatFrame = document.querySelector('#webchat iframe');
-            if (webchatFrame) {
-                webchatFrame.style.width = '100%';
-                webchatFrame.style.height = '100%';
-                webchatFrame.style.border = 'none';
-            }
-        }, 2000);
+  },
+  "clientId": "36fc36e6-f791-4b02-8086-58654242f322",
+  "selector": "#webchat"
+});
     </script>
 </body>
 </html>
