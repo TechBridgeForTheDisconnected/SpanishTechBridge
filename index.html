@@ -1,63 +1,193 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Bridge for the Disconnected</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Tech Bridge for the Disconnected - Obtén ayuda con problemas tecnológicos comunes como conectividad a internet, dispositivos lentos y más.">
-    <meta name="keywords" content="soporte técnico, problemas de internet, dispositivo lento, batería agotada, problemas con wifi">
-    <meta name="author" content="Your Name">
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
     <!-- Styles -->
     <style>
-        /* CSS remains unchanged */
-        /* ... */
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        h1 {
+            background-color: #3B82F6;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+        .logo {
+            width: 150px;
+            height: auto;
+            margin: 10px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            background-color: #3B82F6;
+            padding: 10px;
+        }
+        .tab-button {
+            background-color: transparent;
+            border: 2px solid #fff;
+            padding: 10px 20px;
+            margin: 0 10px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .tab-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        .tab-button.active {
+            background-color: white;
+            color: #3B82F6;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+        .container:hover {
+            transform: scale(1.02);
+        }
+        .dropdown {
+            padding: 10px;
+            font-size: 16px;
+            margin: 20px 0;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 400px;
+        }
+        .chat-container {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        #webchat .bpWebchat {
+            position: unset;
+            width: 100%;
+            height: 100%;
+            max-height: 100%;
+            max-width: 100%;
+        }
+        #webchat .bpFab {
+            display: none;
+        }
+        .mobile-notice {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        .dark-mode .container {
+            background-color: #444;
+            color: #fff;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            .chat-container {
+                height: 400px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .dropdown {
+                width: 100%;
+            }
+        }
+        #chatbotToggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #3B82F6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
     </style>
-    <!-- Botpress Scripts -->
+
+    <!-- Botpress Script -->
     <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
 </head>
 <body>
     <h1>
-        <img src="logo.png" alt="Tech Bridge Logo" class="logo">
+        <img src="logo.png" alt="Logo de Tech Bridge" class="logo">
         Tech Bridge for the Disconnected
     </h1>
 
-    <!-- Tabs Navigation -->
+    <!-- Tabs -->
     <div class="tabs">
         <button class="tab-button active" onclick="showTab('faq')">Preguntas Frecuentes</button>
         <button class="tab-button" onclick="showTab('about')">Sobre Nosotros</button>
         <button class="tab-button" onclick="showTab('chatbot')">Chatbot</button>
     </div>
 
-    <!-- Tab Contents -->
+    <!-- FAQ -->
     <div class="tab-content active" id="faq">
         <h2>Preguntas Frecuentes</h2>
         <div class="container">
             <details>
                 <summary>¿Cómo puedo arreglar un dispositivo lento?</summary>
-                <p>Cierra aplicaciones no utilizadas y borra el caché para acelerar tu dispositivo.</p>
+                <p>Cierra las aplicaciones no utilizadas y borra la memoria caché para acelerar tu dispositivo.</p>
             </details>
             <details>
                 <summary>¿Por qué mi WiFi se desconecta constantemente?</summary>
-                <p>Olvida la red y vuelve a conectarte, o reinicia el router.</p>
+                <p>Olvida y vuelve a conectar la red, o reinicia tu router.</p>
             </details>
             <details>
                 <summary>¿Qué hacer si la batería se agota rápidamente?</summary>
-                <p>Reduce el brillo de la pantalla, cierra apps en segundo plano y desactiva la ubicación.</p>
+                <p>Reduce el brillo de la pantalla, cierra aplicaciones en segundo plano y desactiva los servicios de ubicación.</p>
             </details>
             <details>
                 <summary>¿Cómo puedo arreglar un software que no responde?</summary>
-                <p>Intenta actualizar o reinstalar el software y reinicia el dispositivo.</p>
+                <p>Intenta actualizar o reinstalar la app y reiniciar el dispositivo.</p>
             </details>
             <details>
                 <summary>¿Qué hacer si no tengo conexión a internet?</summary>
-                <p>Reinicia el router o contacta a tu proveedor de servicios de internet (ISP).</p>
+                <p>Reinicia el router o contacta a tu proveedor de servicios de internet.</p>
             </details>
         </div>
     </div>
 
+    <!-- About -->
     <div class="tab-content" id="about">
         <h2>Sobre Nosotros</h2>
         <div class="container">
@@ -65,17 +195,18 @@
         </div>
     </div>
 
+    <!-- Chatbot -->
     <div class="tab-content" id="chatbot">
         <h2>Chatbot</h2>
         <div class="container">
             <p class="mobile-notice">Usuarios móviles: por favor cierra el chatbot para poder desplazarte hacia arriba y abajo.</p>
             <div class="chat-container">
-                <div id="webchat" style="width: 100%; height: 100%;"></div>
+                <div id="webchat"></div>
             </div>
         </div>
     </div>
 
-    <!-- Chatbot Toggle Button -->
+    <!-- Chatbot Toggle -->
     <button id="chatbotToggle">Abrir Chatbot</button>
 
     <!-- Scripts -->
@@ -83,47 +214,39 @@
         function showTab(tabName) {
             const tabs = document.querySelectorAll('.tab-content');
             const buttons = document.querySelectorAll('.tab-button');
-            
-            tabs.forEach(tab => {
-                tab.classList.remove('active');
-            });
-            buttons.forEach(button => {
-                button.classList.remove('active');
-            });
-            
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+
             document.getElementById(tabName).classList.add('active');
             event.target.classList.add('active');
         }
 
-        // Chatbot Toggle Button
+        // Open chatbot on click
         const chatbotToggle = document.getElementById("chatbotToggle");
         chatbotToggle.addEventListener("click", () => {
-            window.botpress.open(); // Open the chatbot
+            window.botpress.open();
         });
 
         // Initialize Botpress
         window.botpress.init({
-          "botId": "d86f2e7d-be1d-40f5-a8bd-4c75c96ae22c",
-          "configuration": {
-            "composerPlaceholder": "¿En qué puedo ayudarte? (¿Qué dispositivo estás usando?)",
-            "botName": "Nieto/a Virtual",
-            "botDescription": "¡Estoy aquí en lugar de tu nieto/a!",
-            "website": {},
-            "email": {
-              "title": "TechBridgeForTheDisconnected@gmail.com",
-              "link": "TechBridgeForTheDisconnected@gmail.com"
+            "botId": "d86f2e7d-be1d-40f5-a8bd-4c75c96ae22c",
+            "configuration": {
+                "composerPlaceholder": "¿En qué puedo ayudarte? (¿Qué dispositivo estás usando?)",
+                "botName": "Grandchild",
+                "botDescription": "¡Estoy aquí en lugar de tu nieto!",
+                "email": {
+                    "title": "TechBridgeForTheDisconnected@gmail.com",
+                    "link": "TechBridgeForTheDisconnected@gmail.com"
+                },
+                "color": "#3B82F6",
+                "variant": "solid",
+                "themeMode": "light",
+                "fontFamily": "inter",
+                "radius": 1
             },
-            "phone": {},
-            "termsOfService": {},
-            "privacyPolicy": {},
-            "color": "#3B82F6",
-            "variant": "solid",
-            "themeMode": "light",
-            "fontFamily": "inter",
-            "radius": 1
-          },
-          "clientId": "36fc36e6-f791-4b02-8086-58654242f322",
-          "selector": "#webchat"
+            "clientId": "36fc36e6-f791-4b02-8086-58654242f322",
+            "selector": "#webchat"
         });
     </script>
 </body>
