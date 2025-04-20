@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Bridge for the Disconnected</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Tech Bridge for the Disconnected - Obtén ayuda con problemas tecnológicos comunes como conectividad a internet, dispositivos lentos y más.">
+    <meta name="keywords" content="soporte técnico, problemas de internet, dispositivo lento, batería agotada, problemas con wifi">
+    <meta name="author" content="Your Name">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <style>
+        /* CSS remains unchanged */
+        /* ... */
+    </style>
+    <!-- Botpress Scripts -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
+</head>
+<body>
+    <h1>
+        <img src="logo.png" alt="Tech Bridge Logo" class="logo">
+        Tech Bridge for the Disconnected
+    </h1>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('faq')">Preguntas Frecuentes</button>
+        <button class="tab-button" onclick="showTab('about')">Sobre Nosotros</button>
+        <button class="tab-button" onclick="showTab('chatbot')">Chatbot</button>
+    </div>
+
+    <!-- Tab Contents -->
+    <div class="tab-content active" id="faq">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="container">
+            <details>
+                <summary>¿Cómo puedo arreglar un dispositivo lento?</summary>
+                <p>Cierra aplicaciones no utilizadas y borra el caché para acelerar tu dispositivo.</p>
+            </details>
+            <details>
+                <summary>¿Por qué mi WiFi se desconecta constantemente?</summary>
+                <p>Olvida la red y vuelve a conectarte, o reinicia el router.</p>
+            </details>
+            <details>
+                <summary>¿Qué hacer si la batería se agota rápidamente?</summary>
+                <p>Reduce el brillo de la pantalla, cierra apps en segundo plano y desactiva la ubicación.</p>
+            </details>
+            <details>
+                <summary>¿Cómo puedo arreglar un software que no responde?</summary>
+                <p>Intenta actualizar o reinstalar el software y reinicia el dispositivo.</p>
+            </details>
+            <details>
+                <summary>¿Qué hacer si no tengo conexión a internet?</summary>
+                <p>Reinicia el router o contacta a tu proveedor de servicios de internet (ISP).</p>
+            </details>
+        </div>
+    </div>
+
+    <div class="tab-content" id="about">
+        <h2>Sobre Nosotros</h2>
+        <div class="container">
+            <p>Somos un grupo de estudiantes de Herricks High School con el objetivo de servir a nuestra comunidad. Nuestro medio de servicio es este sitio web, diseñado para ayudar a quienes luchan por mantenerse al día con el mundo tecnológico en constante cambio. Sabemos lo difícil que es mantenerse actualizado, especialmente para los adultos mayores y las personas con discapacidad visual. Nuestra historia comenzó cuando uno de los miembros de nuestro grupo visitó a un familiar en el hospital. Durante la conversación, ella expresó que su mayor problema era no poder contactar a sus familiares. Eso nos inspiró a desarrollar una herramienta que pudiera ayudar a cualquiera con sus necesidades tecnológicas. Nos esforzamos por ayudar y servir para mejorar nuestra comunidad y el mundo entero.</p>
+        </div>
+    </div>
+
+    <div class="tab-content" id="chatbot">
+        <h2>Chatbot</h2>
+        <div class="container">
+            <p class="mobile-notice">Usuarios móviles: por favor cierra el chatbot para poder desplazarte hacia arriba y abajo.</p>
+            <div class="chat-container">
+                <div id="webchat" style="width: 100%; height: 100%;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chatbot Toggle Button -->
+    <button id="chatbotToggle">Abrir Chatbot</button>
+
+    <!-- Scripts -->
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            buttons.forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Chatbot Toggle Button
+        const chatbotToggle = document.getElementById("chatbotToggle");
+        chatbotToggle.addEventListener("click", () => {
+            window.botpress.open(); // Open the chatbot
+        });
+
+        // Initialize Botpress
+        window.botpress.init({
+          "botId": "d86f2e7d-be1d-40f5-a8bd-4c75c96ae22c",
+          "configuration": {
+            "composerPlaceholder": "¿En qué puedo ayudarte? (¿Qué dispositivo estás usando?)",
+            "botName": "Nieto/a Virtual",
+            "botDescription": "¡Estoy aquí en lugar de tu nieto/a!",
+            "website": {},
+            "email": {
+              "title": "TechBridgeForTheDisconnected@gmail.com",
+              "link": "TechBridgeForTheDisconnected@gmail.com"
+            },
+            "phone": {},
+            "termsOfService": {},
+            "privacyPolicy": {},
+            "color": "#3B82F6",
+            "variant": "solid",
+            "themeMode": "light",
+            "fontFamily": "inter",
+            "radius": 1
+          },
+          "clientId": "36fc36e6-f791-4b02-8086-58654242f322",
+          "selector": "#webchat"
+        });
+    </script>
+</body>
+</html>
