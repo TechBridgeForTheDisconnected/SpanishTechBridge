@@ -85,27 +85,27 @@
             width: 100%;
             max-width: 400px;
         }
-        .chat-container {
+        .chatbot-container {
             width: 100%;
             height: 500px;
             margin-top: 20px;
             border: 2px solid #ddd;
             border-radius: 10px;
             overflow: hidden;
+            position: relative;
         }
         #webchat {
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
             width: 100% !important;
             height: 100% !important;
         }
-        #webchat .bpWebchat {
-            position: unset;
-            width: 100%;
-            height: 100%;
-            max-height: 100%;
-            max-width: 100%;
-        }
-        #webchat .bpFab {
-            display: none;
+        #webchat > * {
+            margin: 0 !important;
+            padding: 0 !important;
         }
         .mobile-notice {
             font-size: 14px;
@@ -124,7 +124,7 @@
             .container {
                 padding: 10px;
             }
-            .chat-container {
+            .chatbot-container {
                 height: 400px;
             }
             h1 {
@@ -204,8 +204,8 @@
         <h2>Chatbot</h2>
         <div class="container">
             <p class="mobile-notice">Usuarios móviles: por favor cierra el chatbot para poder desplazarte hacia arriba y abajo.</p>
-            <div class="chat-container">
-                <div id="webchat" style="width: 100%; height: 100%;"></div>
+            <div class="chatbot-container" id="webchat-container">
+                <!-- Botpress will inject here -->
             </div>
         </div>
     </div>
@@ -229,13 +229,17 @@
         // Open chatbot on click
         const chatbotToggle = document.getElementById("chatbotToggle");
         chatbotToggle.addEventListener("click", () => {
-            window.botpress.open();
+            window.botpressWebChat.open();
         });
 
-        // Initialize Botpress
-        window.botpress.init({
+        // Initialize Botpress with updated configuration
+        window.botpressWebChat.init({
             "botId": "d86f2e7d-be1d-40f5-a8bd-4c75c96ae22c",
-            "configuration": {
+            "hostUrl": "https://cdn.botpress.cloud/webchat/v2",
+            "messagingUrl": "https://messaging.botpress.cloud",
+            "clientId": "36fc36e6-f791-4b02-8086-58654242f322",
+            "selector": "#webchat-container",
+            "config": {
                 "composerPlaceholder": "¿En qué puedo ayudarte? (¿Qué dispositivo estás usando?)",
                 "botName": "Grandchild",
                 "botDescription": "¡Estoy aquí en lugar de tu nieto!",
@@ -248,10 +252,18 @@
                 "themeMode": "light",
                 "fontFamily": "inter",
                 "radius": 1
-            },
-            "clientId": "36fc36e6-f791-4b02-8086-58654242f322",
-            "selector": "#webchat"
+            }
         });
+
+        // Force resize after initialization
+        setTimeout(() => {
+            const webchatFrame = document.querySelector('#webchat iframe');
+            if (webchatFrame) {
+                webchatFrame.style.width = '100%';
+                webchatFrame.style.height = '100%';
+                webchatFrame.style.border = 'none';
+            }
+        }, 2000);
     </script>
 </body>
 </html>
