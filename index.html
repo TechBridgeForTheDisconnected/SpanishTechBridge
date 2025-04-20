@@ -85,7 +85,8 @@
             width: 100%;
             max-width: 400px;
         }
-        .chat-container {
+        .chatbot-container {
+            max-width: 100%;
             width: 100%;
             height: 500px;
             margin-top: 20px;
@@ -120,7 +121,7 @@
             .container {
                 padding: 10px;
             }
-            .chat-container {
+            .chatbot-container {
                 height: 400px;
             }
             h1 {
@@ -141,6 +142,17 @@
             border-radius: 5px;
             cursor: pointer;
             z-index: 1000;
+        }
+
+        /* Ensure responsiveness for chatbot */
+        .chatbot-wrapper {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
     </style>
 
@@ -200,8 +212,10 @@
         <h2>Chatbot</h2>
         <div class="container">
             <p class="mobile-notice">Usuarios móviles: por favor cierra el chatbot para poder desplazarte hacia arriba y abajo.</p>
-            <div class="chat-container">
-                <div id="webchat"></div>
+            <div class="chatbot-wrapper">
+                <div class="chatbot-container">
+                    <div id="webchat"></div>
+                </div>
             </div>
         </div>
     </div>
